@@ -8,7 +8,7 @@
         /* Set height, width, borders, and global font properties here */
         font-family: monospace;
         height: 800px;
-      }</style><script defer="defer" src="/js/chunk-vendors.de885cce.js"></script><script defer="defer" src="/js/chunk-common.885d6608.js"></script><script defer="defer" src="/js/index.html.b715540e.js"></script><link href="/css/chunk-common.b6f94eb1.css" rel="stylesheet"></head><body class="zenuml"><noscript><strong>We're sorry but vue-sequence doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div class="m-1 grid grid-cols-6" id="diagram1"><div class="col-span-2"><textarea id="text" class="col-span-1 m-1 border-2" cols="30" rows="200" oninput="updateCode(this.value)"></textarea></div><div class="col-span-4"><pre class="zenuml">
+      }</style><script defer="defer" src="/js/chunk-vendors.de885cce.js"></script><script defer="defer" src="/js/chunk-common.85696c6d.js"></script><script defer="defer" src="/js/index.html.b715540e.js"></script><link href="/css/chunk-common.d8f98c8f.css" rel="stylesheet"></head><body class="zenuml"><noscript><strong>We're sorry but vue-sequence doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div class="m-1 grid grid-cols-6" id="diagram1"><div class="col-span-2"><textarea id="text" class="col-span-1 m-1 border-2" cols="30" rows="200" oninput="updateCode(this.value)"></textarea></div><div class="col-span-4"><pre class="zenuml">
 
 </pre></div></div><script>const editor = CodeMirror.fromTextArea(document.getElementById("text"), {
         lineNumbers: true
@@ -27,7 +27,7 @@
 
       editor.on("change", function(cm) {
         waitUntil( () => {return window.zenUml}, () => {
-          window.zenUml.render(cm.getValue(), 'default').then(r => {
+          window.zenUml.render(cm.getValue(), 'theme-default').then(r => {
             window.parentLogger.child({module: 'index.html'}).debug('render resolved', r);
           });
         });
