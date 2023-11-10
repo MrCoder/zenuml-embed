@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,32 +28,50 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.1/codemirror.min.css"
-      crossorigin="anonymous"
       integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
     <title>ZenUML Core Demo</title>
     <style>
-      .zenuml .CodeMirror {
+      .CodeMirror {
         /* Set height, width, borders, and global font properties here */
         font-family: monospace;
         font-size: 13px;
-        height: 800px;
+        height: 1000px;
+      }
+
+      .zenuml .CodeMirror .CodeMirror-cursor {
+        border-color: #000;
+        border-left-width: 1px;
+      }
+
+      .grid {
+        display: grid;
+      }
+
+      .grid-cols-6 {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      .col-span-2 {
+        grid-column: span 2 / span 2;
+      }
+
+      .col-span-4 {
+        grid-column: span 4 / span 4;
       }
     </style>
-    <script type="module" crossorigin src="/assets/core.04131915.js"></script>
-    <script type="module" crossorigin src="/assets/main.26363897.js"></script>
-    <link rel="stylesheet" href="/assets/core.37760fb1.css">
+    <script type="module" crossorigin src="/assets/core.3bf32fc3.js"></script>
+    <script type="module" crossorigin src="/assets/main.ef16741c.js"></script>
+    <link rel="stylesheet" href="/assets/core.9b2cd854.css">
   </head>
-  <!-- .zenuml will enable "important" feature of tailwindcss. This class is also added to
-    DiagramFrame so the diagram itself always works fine. This .zenuml is to make sure the
-    editor and other layouts work properly.-->
-  <body class="zenuml">
+
+  <body>
     <noscript>
       <strong
-        >We're sorry but vue-sequence doesn't work properly without JavaScript enabled. Please
-        enable it to continue.</strong
+        >We're sorry but vue-sequence doesn't work properly without JavaScript
+        enabled. Please enable it to continue.</strong
       >
     </noscript>
     <div class="m-1 grid grid-cols-6" id="diagram1">
@@ -67,11 +85,11 @@
         ></textarea>
       </div>
       <div class="col-span-4">
-        <pre class="zenuml"></pre>
+        <pre class="zenuml" style="margin: 0"></pre>
       </div>
     </div>
     <script>
-      const editor = CodeMirror.fromTextArea(document.getElementById('text'), {
+      const editor = CodeMirror.fromTextArea(document.getElementById("text"), {
         lineNumbers: true,
         singleCursorHeightPerLine: false,
       });
@@ -87,22 +105,38 @@
         }
       }
 
-      editor.on('change', function (cm) {
+      editor.on("change", function (cm) {
         waitUntil(
           () => {
             return window.zenUml;
           },
-          () => {
-            window.zenUml.render(cm.getValue(), 'theme-default').then((r) => {
-              window.parentLogger.child({ name: 'index.html' }).debug('render resolved', r);
-            });
-          }
+          (() => {
+            let timer = 0;
+            return () => {
+              clearTimeout(timer);
+              timer = setTimeout(() => {
+                const theme =
+                  localStorage.getItem(`${location.hostname}-zenuml-theme`) ||
+                  "theme-default";
+                window.zenUml
+                  .render(cm.getValue(), {
+                    theme,
+                    onContentChange: (code) => editor.setValue(code),
+                  })
+                  .then((r) => {
+                    window.parentLogger
+                      .child({ name: "index.html" })
+                      .debug("render resolved", r);
+                  });
+              }, 500);
+            };
+          })(),
         );
         // write cm.getValue() to localStorage
-        localStorage.setItem('zenuml-cm-code', cm.getValue());
+        localStorage.setItem("zenuml-cm-code", cm.getValue());
       });
       // read localStorage and set to code mirror
-      const code = localStorage.getItem('zenuml-cm-code');
+      const code = localStorage.getItem("zenuml-cm-code");
       if (code) {
         editor.setValue(code);
       }

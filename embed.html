@@ -13,9 +13,9 @@
       content="ZenUML is a free online diagram application for generating sequence diagrams from text."
     />
     <meta name="Keywords" content="diagram, online, sequence diagram, uml" />
-    <script type="module" crossorigin src="/assets/core.04131915.js"></script>
-    <script type="module" crossorigin src="/assets/main.26363897.js"></script>
-    <link rel="stylesheet" href="/assets/core.37760fb1.css">
+    <script type="module" crossorigin src="/assets/core.3bf32fc3.js"></script>
+    <script type="module" crossorigin src="/assets/main.ef16741c.js"></script>
+    <link rel="stylesheet" href="/assets/core.9b2cd854.css">
   </head>
   <body style="height: 100%; width: 100%">
     <noscript>
@@ -37,7 +37,7 @@
           if (action === 'eval') {
             try {
               let { code, theme, style, css } = ev.data.args;
-              await zenUml.render(code, theme);
+              await zenUml.render(code, { theme });
               send_ok();
             } catch (e) {
               send_error(e.message, e.stack);
@@ -189,7 +189,7 @@
     </script>
 
     <div id="diagram" class="diagram" style="text-align: center">
-      <pre class="zenuml"></pre>
+      <pre class="zenuml" style="margin: 0;"></pre>
     </div>
     
   </body>

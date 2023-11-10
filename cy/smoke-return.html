@@ -10,16 +10,16 @@
         margin: 0; /* mostly for demo on mobile */
       }
     </style>
-    <script type="module" crossorigin src="/assets/core.04131915.js"></script>
-    <script type="module" crossorigin src="/assets/main.26363897.js"></script>
-    <link rel="stylesheet" href="/assets/core.37760fb1.css">
+    <script type="module" crossorigin src="/assets/core.3bf32fc3.js"></script>
+    <script type="module" crossorigin src="/assets/main.ef16741c.js"></script>
+    <link rel="stylesheet" href="/assets/core.9b2cd854.css">
   </head>
   <body>
     <div id="diagram" class="diagram">
-      <pre class="zenuml">
+      <pre class="zenuml" style="margin: 0;">
   Browser->BookController.onPost() {
   BookLibService.Borrow(id) {
-      receipt = process(id)
+      receipt = process(id1)
       if (receipt != null) {
         return receipt
         @return BookController->Browser: receipt
