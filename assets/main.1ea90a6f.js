@@ -1,1 +1,0 @@
-import{r as e,Z as r}from"./core.3bf32fc3.js";const t=e.child({name:"main"}),l=document.querySelector("pre.zenuml"),m="ZenUML",n=new r(l);window.zenUml=n;n.render(m,{enableMultiTheme:!1,stickyOffset:0,theme:"theme-default"}).then(o=>{t.debug("render resolved",o)});window.parentLogger=e;
