@@ -1,0 +1,1 @@
+import{r as e,Z as o}from"./core.943736d6.js";const r=e.child({name:"main"}),m=document.querySelector("pre.zenuml"),l="ZenUML",n=new o(m);window.zenUml=n;n.render(l,{enableMultiTheme:!0,stickyOffset:0,theme:localStorage.getItem(`${location.hostname}-zenuml-theme`)||"theme-default"}).then(t=>{r.debug("render resolved",t)});window.parentLogger=e;

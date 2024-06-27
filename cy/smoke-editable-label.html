@@ -4,37 +4,31 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>vue-sequence smoke 1</title>
+    <title>vue-sequence editable label</title>
     <style>
       body {
-        margin: 0; /* mostly for demo on mobile */
+        margin: 0;
+        /* mostly for demo on mobile */
       }
     </style>
     <script type="module" crossorigin src="/assets/core.943736d6.js"></script>
     <script type="module" crossorigin src="/assets/main-cy.73e266bc.js"></script>
     <link rel="stylesheet" href="/assets/core.a09a8433.css">
   </head>
+
   <body>
     <div id="diagram" class="diagram">
       <pre class="zenuml" style="margin: 0">
-title Title 1
-A.m1 {
-  new B(1,2,3,4) {
-    if(x) {
-      C.m2
-    }
-    while(y) {
-      D.m3
-    }
-    par {
-      E.m4
-      F.m5
-    }
-    opt {
-      G.m6
-    }
-  }
-}</pre
+title Editable label
+A.method(){
+  SelfMessage
+  new B(create)
+  return x;
+}
+C->D:: Hello Alice
+D->C:: Hello Bob
+C->D:: Good to see you
+    </pre
       >
     </div>
     <!-- built files will be auto injected -->
